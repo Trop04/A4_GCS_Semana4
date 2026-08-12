@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Calculadora de IMC</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- Formulario -->
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">Peso (kg)</ion-label>
+      <ion-input type="number" [(ngModel)]="peso" placeholder="Ej: 70"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Altura (m)</ion-label>
+      <ion-input type="number" [(ngModel)]="altura" placeholder="Ej: 1.75"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Edad</ion-label>
+      <ion-input type="number" [(ngModel)]="edad" placeholder="Ej: 28"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Género</ion-label>
+      <ion-select [(ngModel)]="genero" placeholder="Selecciona una opción">
+        <ion-select-option value="femenino">Femenino</ion-select-option>
+        <ion-select-option value="masculino">Masculino</ion-select-option>
+        <ion-select-option value="otro">Otro</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <ion-text color="danger" *ngIf="mostrarError">
+    <p class="ion-padding-start">Ingresa un peso y una altura válidos.</p>
+  </ion-text>
+
+  <ion-button expand="block" class="ion-margin-top" (click)="calcular()">
+    Calcular
+  </ion-button>
+
+  <ion-button expand="block" fill="clear" *ngIf="resultado" (click)="limpiar()">
+    Limpiar
+  </ion-button>
+
+  <!-- Resultado -->
+  <ion-card *ngIf="resultado" [color]="resultado.color">
+    <ion-card-header>
+      <ion-card-subtitle>Tu resultado</ion-card-subtitle>
+      <ion-card-title>IMC: {{ resultado.valor | number:'1.1-1' }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <h2>{{ resultado.categoria }}</h2>
+      <p *ngIf="edad">Edad: {{ edad }} años</p>
+      <p *ngIf="genero">Género: {{ genero }}</p>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
