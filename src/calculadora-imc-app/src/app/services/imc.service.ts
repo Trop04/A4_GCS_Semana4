@@ -17,6 +17,7 @@ export class ImcService {
     }
     return peso / (altura * altura);
   }
+ //Supongamos que se añadieron otras cosas para convertir
 
   obtenerCategoria(imc: number): ResultadoImc {
     let categoria = '';
